@@ -83,6 +83,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 Acknowledgments 
 BeautifulSoup – Web scraping library used in this project.
 
-[Streamlit](https://streamlit.io/) – Framework for creating interactive web apps.
+
 
 [Hugging Face](https://huggingface.co/) – For the transformer-based models used in this project.
