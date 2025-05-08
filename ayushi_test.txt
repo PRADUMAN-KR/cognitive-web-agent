@@ -1,1 +1,132 @@
-Test contribution by Ayushi
+📌 Project Overview (as you described)
+Login / Register page
+→ Home page (with "Get Started" button)
+→ Dashboard
+    Create Bot
+    Created Bots
+
+
+
+
+📝 Create Bot:
+User enters:
+Bot Name
+Website URL
+
+On submission:
+Backend scrapes the content from the URL
+Uses Hugging Face embeddings to vectorize content
+
+Immediately after creation, a chat icon appears at the bottom-right of the current screen
+Clicking the icon opens:
+Bot Name (as heading)
+User input box
+Chat conversation powered by RAG based on that just-created bot’s content
+
+Stores these vectors (probably in a vector DB like FAISS / Chroma / something lightweight for POC)
+
+
+
+
+
+
+
+project_root/
+├── app/
+│   ├── __init__.py
+│   ├── routes/
+│   │   ├── auth_routes.py
+│   │   ├── bot_routes.py
+│   │   └── chat_routes.py
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── home.html
+│   │   ├── dashboard.html
+│   │   └── chat_widget.html
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   ├── utils/
+│   │   ├── scraper.py
+│   │   ├── vectorizer.py
+│   │   └── rag_engine.py
+│   └── models.py
+├── instance/
+│   └── bots.db
+├── run.py
+└── requirements.txt
+
+
+
+
+
+
+
+
+
+
+
+📦 Your Flask Task Would Likely Include:
+✅ User Authentication (Login/Register API and/or Pages)
+
+✅ Bot Creation API
+
+Accept Bot Name & Website URL
+
+Run web scraping logic (probably using requests + BeautifulSoup or scrapy)
+
+Use Hugging Face transformer model for text embeddings (e.g., sentence-transformers)
+
+Store vectors (in-memory FAISS index or file-based for now)
+
+✅ Bot Management
+
+API to get list of created bots
+
+Optionally, persist bot info (bot name, creation date, vector path/index name) in SQLite or a JSON file
+
+✅ Chat Endpoint
+
+Accept Bot Name & User Query
+
+Use RAG (Retrieve relevant chunks via vector search → Answer generation via LLM)
+
+Return response
+
+✅ Optional:
+
+Basic frontend templates (Jinja) for Login/Register/Home/Dashboard/Chat
+
+Integrating chat widget popup in frontend
+
+🔥 Tech Stack (Probable)
+Flask (API + templating)
+
+BeautifulSoup (web scraping)
+
+Sentence Transformers / Hugging Face (text embeddings)
+
+FAISS / Chroma (vector store)
+
+SQLite or file storage (for bot meta info)
+
+Optional: HTMX/JS for chat widget interactions
+
+⚙️ Example: Simple RAG flow in Flask
+On query:
+
+Search vectors for top-k similar content chunks
+
+Concatenate results → feed to LLM (Hugging Face API / locally hosted model)
+
+Return the generated response
+
+If you’d like — I can help scaffold the code structure or write out one of these API endpoints as a starting point.
+Would you prefer:
+
+Starting with the Bot Creation API
+
+Or the Chat API using RAG
+
+Or the Login/Register flow

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+  <h2>Welcome {{ session.username }}</h2>
+  <h3>Your Bots:</h3>
+  {% for bot in bots %}
+    <p>{{ bot.name }} | <a href="#">Chat</a></p>
+  {% endfor %}
+  <p><a href="/logout">Logout</a></p>
+</body>
+</html>
