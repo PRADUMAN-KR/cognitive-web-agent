@@ -3,6 +3,7 @@ from datetime import datetime
 import uuid
 
 class User(db.Model):
+    # klasdf
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
