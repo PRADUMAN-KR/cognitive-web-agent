@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}COGNITIVE WEB AGENT{% endblock %}</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-glow"></div>
+                <h1>Cognitive<span>Web</span>Agent</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#try-now" class="nav-btn">Try Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="" data-text="AI-Powered Web Chatbot">AI-Powered Web Chatbot</h1>
+                    <p>Ask questions about any website — our chatbot scrapes, understands, and answers intelligently using real-time data.</p>
+                    <div class="hero-buttons">
+                        <a href="#try-now" class="btn primary-btn">
+                            <span class="btn-text">Try It Now</span>
+                            <span class="btn-glow"></span>
+                        </a>
+                        <a href="#learn-more" class="btn secondary-btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="orbit">
+                        <div class="planet"></div>
+                        <div class="satellite"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Advanced Capabilities</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <div class="icon-glow"></div>
+                            <span>01</span>
+                        </div>
+                        <h3>Real-time Scraping</h3>
+                        <p>Extract and process information from any website in seconds</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <div class="icon-glow"></div>
+                            <span>02</span>
+                        </div>
+                        <h3>Contextual Understanding</h3>
+                        <p>Advanced AI comprehends complex website structures and content</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <div class="icon-glow"></div>
+                            <span>03</span>
+                        </div>
+                        <h3>Intelligent Responses</h3>
+                        <p>Get accurate, relevant answers based on the latest web data</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>CognitiveWebAgent</h2>
+                    <p>The future of web intelligence</p>
+                </div>
+                <div class="footer-links">
+                    <!-- <div class="footer-column">
+                        <h3>Product</h3>
+                        <ul>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Security</a></li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+
+
+
+            <div class="footer-bottom">
+                <p>©2025 Cognitive Web Agent. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
