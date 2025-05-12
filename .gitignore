@@ -1,3 +1,4 @@
 webChatBot
 venv
-
+scrapped_pages
+.env
