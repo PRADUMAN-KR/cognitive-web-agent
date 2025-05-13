@@ -1,0 +1,15 @@
+challeges faced during the dev was
+
+1.uniquely storing the user data and scrapping the url which user provide and embedding them 
+2.reusing the scrapped content if the that url is been scrapped and stored before.
+Reuse the vector DB if it already exists
+Use persistent storage for the vector store (like with Chroma)
+
+this is how i tackle this problem
+
+data/
+├── vectorstores/
+│   ├── user1/
+│   └── user2/
+├── temp/
+│   └── temporary text files for embedding
