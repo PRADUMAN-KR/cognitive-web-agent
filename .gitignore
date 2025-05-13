@@ -2,3 +2,4 @@ webChatBot
 venv
 scrapped_pages
 .env
+__pycache__
