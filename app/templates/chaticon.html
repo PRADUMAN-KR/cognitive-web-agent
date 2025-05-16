@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Icon</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  #chat-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: #007bff;
+    padding: 16px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
+  }
+
+  #chat-button:hover {
+    transform: scale(1.1);
+  }
+
+  .lucide {
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+  }
+
+  #chat-panel {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    width: 320px;
+    height: 450px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+  }
+
+  #chat-panel.visible {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .message {
+    max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .incoming {
+    background-color: #ffffff;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+  }
+
+  .outgoing {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+  }
+
+  #chat-input-area {
+    display: flex;
+    padding: 8px;
+    background-color: #e0e0e0;
+    border-top: 1px solid #ccc;
+  }
+
+  #chat-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+  }
+
+  #send-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  #send-btn svg {
+    stroke: #007bff;
+  }
+</style>
+
+
+</head>
+<body>
+ 
+  <script src="chatbot.js"></script>
+</body>
+</html>

@@ -86,4 +86,4 @@ def scrape(base_url):
         print(f"Main scrape error: {e}")
         return []
 
-print(scrape('https://www.ameotech.com/'))
+print(scrape('https://www.vcodifytechnologies.com'))
