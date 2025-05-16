@@ -50,10 +50,7 @@ WEB_URL="https://example.com"
 VECTOR_DATABASE_URL="your_vector_database_url"
 
 5. Run the Application 🚀
-``` 
-bash
-streamlit run app.py
-```
+
 
 Usage 🛠️
 Enter Website URL 🌐: Provide the URL of the website you want to scrape.
