@@ -4,7 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 import string
 import datetime
+from sqlalchemy import or_
 from .models import User,db
+
+
 
 
 main = Blueprint('main', __name__, template_folder='templates')
@@ -15,7 +18,7 @@ def generate_api_key(length=32):
     api_key = ''.join(secrets.choice(characters) for _ in range(length))
     return api_key
 
-@main.route('/home')
+@main.route('/')
 def home():
     return render_template('base.html')
 
@@ -25,14 +28,15 @@ def user_regis():
         return render_template("dashboard.html")
     
     if request.method == 'POST':
-        fname = request.form(['fname'])
-        lname = request.form(['lname'])
-        username = request.form(['username'])
-        email = request.form(['email'])
-        password = request.form(['password'])
-        datetime_registered = datetime.now() 
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        datetime_registered = datetime.datetime.now() 
         
-        existing_user = User.query.filter(User.username == username | User.email == email)
+        existing_user = User.query.filter(
+            or_(User.username == username , User.email == email))
 
         if existing_user:
             flash("username or email already exists",'danger')
