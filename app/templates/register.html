@@ -1,116 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Registration Section</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Section</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', 'Arial', sans-serif;
+      }
 
-    .container {
-      background-color: #fff;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 100%;
-    }
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0f1b41, #121a3e);
+        position: relative;
+        overflow-x: hidden;
+        padding: 20px;
+      }
 
-    .container h2 {
-      text-align: center;
-      margin-bottom: 24px;
-      color: #333;
-    }
+      .bg-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
 
-    .form-group {
-      margin-bottom: 18px;
-    }
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(64, 124, 247, 0.1);
+        border: 1px solid rgba(64, 124, 247, 0.3);
+        box-shadow: 0 0 20px rgba(64, 124, 247, 0.2);
+      }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: #444;
-    }
+      .circle:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        top: -150px;
+        left: -100px;
+      }
 
-    .form-group input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-    }
+      .circle:nth-child(2) {
+        width: 400px;
+        height: 400px;
+        bottom: -200px;
+        right: -150px;
+      }
 
-    .form-group input:focus {
-      border-color: #007bff;
-    }
+      .circle:nth-child(3) {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        right: -100px;
+      }
 
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      font-size: 16px;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+      .grid {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(64, 124, 247, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(64, 124, 247, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.3;
+      }
 
-    .submit-btn:hover {
-      background-color: #0056b3;
-    }
+      .line {
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: linear-gradient(90deg, transparent, rgba(64, 124, 247, 0.5), transparent);
+        animation: scan 4s linear infinite;
+      }
 
-    .login-link {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 14px;
-    }
+      @keyframes scan {
+        0% {
+          top: -10%;
+          opacity: 0.1;
+        }
+        50% {
+          top: 110%;
+          opacity: 0.5;
+        }
+        100% {
+          top: -10%;
+          opacity: 0.1;
+        }
+      }
 
-    .login-link a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 500;
-    }
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 40px 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 100%;
+        z-index: 1;
+        position: relative;
+        animation: glow 5s infinite alternate;
+      }
 
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
+      @keyframes glow {
+        0% {
+          box-shadow: 0 8px 32px rgba(64, 124, 247, 0.2);
+        }
+        100% {
+          box-shadow: 0 8px 32px rgba(64, 124, 247, 0.5);
+        }
+      }
 
+      .container h2 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        font-size: 1.8rem;
+      }
+
+      .container h2::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #407cf7, #00e4ff);
+        border-radius: 3px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+        flex: 1;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #e0e0ff;
+        letter-spacing: 0.5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus {
+        border-color: #407cf7;
+        box-shadow: 0 0 10px rgba(64, 124, 247, 0.3);
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        background: linear-gradient(90deg, #407cf7, #00e4ff);
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s ease;
+      }
+
+      .submit-btn:hover::before {
+        left: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(64, 124, 247, 0.4);
+      }
+
+      .links {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #e0e0ff;
+      }
+
+      .links a {
+        color: #00e4ff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .links a:hover {
+        text-decoration: underline;
+        color: #407cf7;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 30px 20px;
+          margin: 0 10px;
+        }
+
+        .form-row {
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .container h2 {
+          font-size: 1.5rem;
+        }
+
+        .submit-btn {
+          font-size: 15px;
+        }
+      }
+
+      /* Alert message styles */
+      .alert {
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        color: white;
+        font-weight: 500;
+      }
+
+      .alert-success {
+        background-color: #28a745;
+      }
+
+      .alert-danger {
+        background-color: #dc3545;
+      }
+
+      .btn-close {
+        float: right;
+        font-size: 18px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .floating {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 228, 255, 0.3);
+  border: 1px solid rgba(0, 228, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 228, 255, 0.5);
+  animation: float 4s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+/* Custom shapes */
+.floating.triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 20px solid rgba(0, 228, 255, 0.5);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.floating.square {
+  border-radius: 4px;
+  background: rgba(0, 228, 255, 0.2);
+  border: 1px solid rgba(0, 228, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 228, 255, 0.4);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-30px) translateX(15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
+  }
+}
+
+
+
+.main-layout {
+  display: flex;
+  gap: 40px;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.info-card {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: #e0e0ff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.info-card h2 {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.info-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #d0d0f0;
+}
+
+.info-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #b0dfff;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsive Layout */
+@media (max-width: 1000px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .info-card,
+  .container {
+    width: 100%;
+  }
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="bg-elements">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="grid"></div>
+      <div class="line"></div>
+    </div>
+
+
+    <!-- Floating Circles -->
+<div class="floating" style="top: 5%; left: 15%; animation-delay: 0s;"></div>
+<div class="floating" style="top: 25%; left: 75%; animation-delay: 0.5s;"></div>
+<div class="floating" style="top: 65%; left: 30%; animation-delay: 1s;"></div>
+
+<!-- Floating Triangles -->
+<div class="floating triangle" style="top: 15%; left: 50%; animation-delay: 1.5s;"></div>
+<div class="floating triangle" style="top: 70%; left: 80%; animation-delay: 0.8s;"></div>
+
+<!-- Floating Squares -->
+<div class="floating square" style="top: 40%; left: 10%; animation-delay: 0.3s;"></div>
+<div class="floating square" style="top: 85%; left: 45%; animation-delay: 1.2s;"></div>
+<div class="floating square" style="top: 50%; left: 65%; animation-delay: 1.7s;"></div>
+
+<!-- More Circles -->
+<div class="floating" style="top: 10%; left: 90%; animation-delay: 2s;"></div>
+<div class="floating" style="top: 80%; left: 20%; animation-delay: 1.3s;"></div>
+
+
+
+    <div class="main-layout">
+  <!-- Info Card (Left Side) -->
+  <div class="info-card">
+    <h2>Cognitive WebAgent</h2>
+    <p>
+      Cognitive WebAgent is an intelligent AI-powered agent designed to understand, extract,
+      and respond to real-time data from websites. It leverages the power of Retrieval-Augmented
+      Generation (RAG), dynamic web scraping, and semantic understanding to deliver insightful,
+      context-aware responses.
+    </p>
+    <ul>
+      <li>Real-time website data integration</li>
+      <li>Custom embeddings & vector search</li>
+      <li>Multi-tenant support for personalization</li>
+      <li>Built with FastAPI, LangChain, and modern NLP stacks</li>
+    </ul>
+  </div>
+
+  <!-- Registration Form (Right Side) -->
   <section class="container">
-    <h2>Create Account</h2>
-    <form id="register-form">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Your name" required>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+            <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';">&times;</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h2>REGISTRATION</h2>
+    <form method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" name="fname" id="fname" placeholder="Enter first name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" id="lname" placeholder="Enter last name" required />
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Your email" required>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Choose a username" required />
       </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required />
+      </div>
+
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Create a password" required>
+        <input type="password" name="password" id="password" placeholder="Create a password" required />
       </div>
-      <button type="submit" class="submit-btn">Register</button>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm your password" required />
+      </div>
+
+      <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
     </form>
 
-    <div class="login-link">
-      Already have an account? <a href="#">Login here</a>
+    <div class="links">
+      <p>Already have an account? <a href="{{ url_for('main.user_login') }}">Login</a></p>
     </div>
   </section>
+</div>
 
-</body>
+  </body>
 </html>
