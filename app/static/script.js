@@ -45,3 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
   
+
+// targeting the create bot button
+
+document.getElementById('createBotBtn').addEventListener('click', function() {
+  const modal = new bootstrap.Modal(document.getElementById('webBotModal'));
+  modal.show();
+});
+

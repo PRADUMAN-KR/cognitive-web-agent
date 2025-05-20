@@ -3,7 +3,6 @@ from datetime import datetime
 import uuid
 
 class User(db.Model):
-    # klasdf
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -31,7 +30,9 @@ class WebBot(db.Model):
     datetime_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     # Foreign key to User
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    username = db.Column(db.String(100), db.ForeignKey('users.username'))
+
+
 
     def __repr__(self):
         return f'<WebBot {self.bot_name}>'

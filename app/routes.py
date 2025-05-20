@@ -5,7 +5,7 @@ import secrets
 import string
 import datetime
 from sqlalchemy import or_
-from .models import User,db
+from .models import User,db,WebBot
 
 
 
@@ -33,10 +33,10 @@ def user_regis():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
-        datetime_registered = datetime.datetime.now() 
+        datetime_registered = datetime.datetime.now()   
         
         existing_user = User.query.filter(
-            or_(User.username == username , User.email == email))
+            or_(User.username == username , User.email == email)).first()
 
         if existing_user:
             flash("username or email already exists",'danger')
@@ -55,21 +55,24 @@ def user_regis():
 @main.route('/login',methods= ['GET','POST'])
 def user_login():
     if 'username' in session:
-        return redirect(url_for('routes.dashboard'))
+        return redirect(url_for('main.dashboard'))
 
 
     if request.method == 'POST':
-        username = request.form(['username'])
-        password = request.form(['password'])
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter(
+    or_(User.email == username, User.username == username)
+).first()
+
         if user and check_password_hash(user.password, password):
-            session['username'] = username
+            session['username'] = user.username
             flash('login successfull','success')
-            return redirect(url_for('routes.home'))
+            return render_template('dashboard.html')
         else:
             flash('invalid username or password','danger')
-            return redirect(url_for('user_login'))
+            return redirect(url_for('main.user_login'))
         
     return render_template('login.html')
 
@@ -79,12 +82,37 @@ def user_login():
 def dashboard():
     if 'username' not in session:
         flash('Please log in to access this page.', 'warning')
-        return redirect(url_for('user_login'))
-    return render_template('dashboard.html')
+        return redirect(url_for('main.user_login'))
+    
+    chat_bots = WebBot.query.filter(WebBot.username == session['username']).all()
+    if not chat_bots:
+        chat_bots = None
+
+    return render_template('dashboard.html',data = chat_bots)
         
  
+@main.route('/create-bot', methods=['POST'])
+def create_bot():
+    if 'username' not in session:
+        return redirect(url_for('main.user_login'))
+    
+    if request.method == 'POST':
+        bot_name = request.form.get('bot_name')
+        website_url = request.form.get('website_url')
+        datetime_created = datetime.datetime.now()
 
+        existing_bot = WebBot.query.filter(WebBot.bot_name == bot_name).first()
 
-
+        if existing_bot:
+            flash("chabot with name already exits,choose another name",'warning')
+            return render_template('dashbord.html')
         
+        api_key = generate_api_key()
+        new_bot = WebBot(bot_name = bot_name, website_url = website_url, api_key = api_key, datetime_created = datetime_created)
+        db.session.add(new_bot)
+        db.session.commit()
+        flash("new bot created", "success")
+        return redirect(url_for('main.dashboard'))
+
+
 

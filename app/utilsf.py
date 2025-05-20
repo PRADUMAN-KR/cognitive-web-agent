@@ -162,7 +162,7 @@ def store_vectors(text_data: str, store_name: str):
     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     splits = splitter.split_documents(docs)
     persist_dir = get_store_path(store_name)
-    vectorstore = FAISS.from_documents(splits, embedding)
+    vectorstore = FAISS.from_documents(splits, embedding)  
     vectorstore.save_local(persist_dir)
     os.remove(textfile)
 
@@ -205,6 +205,18 @@ def create_qa_chain(vector_store):
     )
 
 
+# def create_chatbot(bot_name , url):
+#     try:
+#         internal_links = []
+#         internal_links = scare 
+
+        
+#     expect:
+
+
+
+
+
 def ask_rag(question: str, qa_chain):
     """
     Query the QA chain with a natural language question.
@@ -222,8 +234,8 @@ def ask_rag(question: str, qa_chain):
 
 if __name__ == "__main__":
     # Test the RAG pipeline with a demo website and user
-    store_name = "solitaire"
-    website = "https://solitaireinfosystems.com"
+    store_name = "ameotech"
+    website = "https://ameotech.com"
 
     # Step 1: Scrape
     scraped = scrape_website(website, store_name)
