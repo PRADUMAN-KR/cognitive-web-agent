@@ -1,5 +1,7 @@
 webChatBot
 venv
+scraped_data
+vetorstore
 scrapped_pages
 .env
 __pycache__
