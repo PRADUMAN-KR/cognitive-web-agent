@@ -1,6 +1,3 @@
-
-
-
 const chatBtn = document.createElement("div");
 chatBtn.id = "chat-button";
 chatBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -47,25 +44,47 @@ chatBtn.addEventListener("click", () => {
   chatPanel.classList.toggle("visible");
 });
 
-function sendMessage(){
+async function sendMessage(){
     const input = document.getElementById("chat-input");
     const text = input.value.trim()
     if (!text) return;
     
+   
+
+    const msgArea = document.getElementById("chat-messages");
     const msg = document.createElement("div");
     msg.className = "message outgoing";
     msg.textContent = text;
-
-    const msgArea = document.getElementById("chat-messages");
     msgArea.appendChild(msg);
     msgArea.scrollTop = msgArea.scrollHeight;
     input.value = "";
+
+    try{
+      const response = await fetch('http://localhost:5000/ask',{
+        method :"POST",
+        headers : {
+           "Content-Type": "application/json"},
+        body : JSON.stringify({ question:text })
+      });
+      const result = await response.json();
+      const botmsg = document.createElement('div');
+      botmsg.className = "message incoming";
+      botmsg.textContent = result.answer || result.error || "Error";
+      msgArea.appendChild(botmsg);
+      msgArea.scrollTop = msgArea.scrollHeight;
+    
+    }catch(err){
+      const errMsg = document.createElement('div');
+      errMsg.className = "message incoming"
+      errMsg.textContent = "Failed to get response.";
+      msgArea.appendChild(errMsg);
+    }
 
 }
 
 document.getElementById("send-btn").addEventListener('click', sendMessage);
 document.getElementById('chat-input').addEventListener('keypress',e => {
-  console.log("alsdhfjhadfhjsad",e);  
+  // console.log("alsdhfjhadfhjsad",e);  
   if (e.key === "Enter") sendMessage();
 })
 

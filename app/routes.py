@@ -1,16 +1,20 @@
 
-from flask import Flask, render_template,Blueprint,session,request,flash,redirect,url_for
+from flask import Flask, render_template,Blueprint,session,request,flash,redirect,url_for,jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 import string
 import datetime
 from sqlalchemy import or_
 from .models import User,db,WebBot
+from .utilsf import ask_rag,create_qa_chain,load_vectors
+from flask_cors import CORS
+
 
 
 
 
 main = Blueprint('main', __name__, template_folder='templates')
+CORS(main)
 
 def generate_api_key(length=32):
     """Generate a secure random API key."""
@@ -113,6 +117,32 @@ def create_bot():
         db.session.commit()
         flash("new bot created", "success")
         return redirect(url_for('main.dashboard'))
+    
+@main.route('/ask', methods=['GET', 'POST'])
+def ask():
+    if 'username' not in session:
+        return redirect
+
+    store_name = "ameotech"
+    vector_store = load_vectors(store_name)
+    qa_chain = create_qa_chain(vector_store)
+
+    data = request.get_json()
+    print(">>>>>>>>>>>>>>>>>>>>>>",data)
+    question = data.get('question', "")  
+
+    if not question:
+        return jsonify({'error': 'no question provided'}), 400  
+    
+
+    try:
+        answer = ask_rag(question, qa_chain)
+        return jsonify({"answer": answer})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
 
 
 

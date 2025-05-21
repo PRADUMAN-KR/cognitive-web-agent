@@ -192,7 +192,7 @@ def create_qa_chain(vector_store):
     Returns:
         RetrievalQA: A RetrievalQA chain ready for question-answering.
     """
-    retriever = vector_store.as_retriever(search_type="similarity", k=4)
+    retriever = vector_store.as_retriever(search_type="similarity", k=3)
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.0-flash",
         google_api_key=GOOGLE_API_KEY,
@@ -203,17 +203,6 @@ def create_qa_chain(vector_store):
         retriever=retriever,
         return_source_documents=True
     )
-
-
-# def create_chatbot(bot_name , url):
-#     try:
-#         internal_links = []
-#         internal_links = scare 
-
-        
-#     expect:
-
-
 
 
 
@@ -234,26 +223,26 @@ def ask_rag(question: str, qa_chain):
 
 if __name__ == "__main__":
     # Test the RAG pipeline with a demo website and user
-    store_name = "ameotech"
-    website = "https://ameotech.com"
+    # store_name = "ameotech"
+    # website = "https://ameotech.com"
 
-    # Step 1: Scrape
-    scraped = scrape_website(website, store_name)
+    # # Step 1: Scrape
+    # scraped = scrape_website(website, store_name)
 
-    # Step 2: Combine text
-    scraped_file_path = os.path.join(SCRAPED_DATA_DIR, store_name, "combined_scrape.txt")
-    with open(scraped_file_path, "r", encoding="utf-8") as f:
-        combined_text = f.read()
+    # # Step 2: Combine text
+    # scraped_file_path = os.path.join(SCRAPED_DATA_DIR, store_name, "combined_scrape.txt")
+    # with open(scraped_file_path, "r", encoding="utf-8") as f:
+    #     combined_text = f.read()
 
-    # Step 3: Store vectors
-    store_vectors(combined_text, store_name)
+    # # Step 3: Store vectors
+    # store_vectors(combined_text, store_name)
 
-    # Step 4: Load and query
-    vector_store = load_vectors(store_name)
-    qa_chain = create_qa_chain(vector_store)
-    answer = ask_rag("What is the name of the company", qa_chain)
+    # # Step 4: Load and query
+    # vector_store = load_vectors(store_name)
+    # qa_chain = create_qa_chain(vector_store)
+    # answer = ask_rag("What is the name of the company", qa_chain)
 
-    print("Answer:", answer)
+    # print("Answer:", answer)
 
 
 
