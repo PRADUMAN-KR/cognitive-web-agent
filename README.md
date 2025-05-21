@@ -1,9 +1,9 @@
-### **Cognitive Web Agent 🤖🌐**
-**Note** The current version is working as expected, which is great! However, we’re noticing some delays in response times and would like to optimize performance further.
+## **Cognitive Web Agent 🤖🌐**
+### Note The current version is working as expected, which is great! However, we’re noticing some delays in response times and would like to optimize performance further.
 
-If you have any suggestions—whether it's architectural improvements, model configuration tips, or better ways to handle vector retrieval and LLM calls—please feel free to share. We're open to refining any part of the pipeline to enhance responsiveness and user experience.
+### If you have any suggestions—whether it's architectural improvements, model configuration tips, or better ways to handle vector retrieval and LLM calls—please feel free to share. We're open to refining any part of the pipeline to enhance responsiveness and user experience.
 
-Looking forward to your ideas and input!
+### Looking forward to your ideas and input!
 
 **Description**
 Cognitive Web Agent is an intelligent chatbot powered by Retrieval-Augmented Generation (RAG). This bot scrapes data from websites in real-time and provides context-aware, natural language responses based on the scraped content. It combines web scraping, vector-based search, and natural language generation to deliver accurate insights from the web.
